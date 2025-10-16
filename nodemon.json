@@ -1,0 +1,9 @@
+{
+    "env" : {
+        "MSQL_USER" : "root",
+        "MSQL_PASSWORD": "1234",
+        "MYSQL_DATABASE": "vagas",
+        "MSQL_HOST": "localhost",
+        "MSQL_PORT": 3306
+    }
+}
