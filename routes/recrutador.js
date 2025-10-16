@@ -85,8 +85,19 @@ router.patch("/", (req, res, next) => {
 });
 
 router.delete("/", (req, res, next) => {
-  res.status(201).send({
-    mensagem: "usando o DELETE dentro da rota do RH",
+  mysql.getConnection((error, conn)=> {
+if (error) { return res.status(500).send({error: error})}
+conn.query(
+  `DELETE FROM recrutador WHERE id_recrutador = ?`, [req.body.id_recrutador],
+  (error, resultado, field) => {
+    conn.release();
+    if(error) {return res.status(500).send({ error: error})}
+    
+    res.status(202).send({
+      mensagem: 'Vagas removidas com sucesso'
+    })
+  }
+)
   });
 });
 
